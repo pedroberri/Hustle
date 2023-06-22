@@ -8,22 +8,23 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
-public class LoginPage extends AppCompatActivity {
+public class RegisterPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_register_page);
 
         getSupportActionBar().hide();
 
-        TextView cadastroText = findViewById(R.id.cadastroText);
-        SpannableString spannableString = new SpannableString(cadastroText.getText());
+        TextView loginText = findViewById(R.id.loginText);
+        SpannableString spannableString = new SpannableString(loginText.getText());
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
-        cadastroText.setText(spannableString);
+        loginText.setText(spannableString);
 
-        cadastroText.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginPage.this, RegisterPage.class);
+        loginText.setOnClickListener(view -> {
+            Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
     }
