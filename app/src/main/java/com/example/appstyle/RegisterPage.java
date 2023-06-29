@@ -22,6 +22,12 @@ public class RegisterPage extends AppCompatActivity {
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
         loginText.setText(spannableString);
 
+        ExerciseApiService exerciseApiService = new ExerciseApiService();
+        exerciseApiService.getExercises(value -> {
+            System.out.println(value);
+        });
+
+
         loginText.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterPage.this, LoginPage.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

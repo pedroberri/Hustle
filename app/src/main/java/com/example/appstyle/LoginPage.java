@@ -21,7 +21,6 @@ public class LoginPage extends AppCompatActivity {
         SpannableString spannableString = new SpannableString(cadastroText.getText());
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
         cadastroText.setText(spannableString);
-
         cadastroText.setOnClickListener(view -> {
             Intent intent = new Intent(LoginPage.this, RegisterPage.class);
             startActivity(intent);
