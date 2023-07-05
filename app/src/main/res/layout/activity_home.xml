@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <View
+        android:id="@+id/blue_circle"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#284B63"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
