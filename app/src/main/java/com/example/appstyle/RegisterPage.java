@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class RegisterPage extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class RegisterPage extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
 
         getSupportActionBar().hide();
-
+        ImageView imageView = findViewById(R.id.logo);
         TextView loginText = findViewById(R.id.loginText);
         SpannableString spannableString = new SpannableString(loginText.getText());
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
