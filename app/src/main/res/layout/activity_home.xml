@@ -69,28 +69,39 @@
 
     <View
         android:id="@+id/frases"
-        android:backgroundTint="@color/preto"
         android:layout_width="380dp"
-        android:layout_height="225dp"
+        android:layout_height="200dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/card_home"
+        android:backgroundTint="@color/preto"
+        app:layout_constraintBottom_toTopOf="@+id/treinoDoDia"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blue_circle" />
 
     <View
         android:id="@+id/treinoDoDia"
         android:layout_width="380dp"
-        android:layout_height="275dp"
+        android:layout_height="200dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/card_home"
         android:backgroundTint="@color/cinza_escuro"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frases" />
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:background="@drawable/nav_bar"
+        android:backgroundTint="@color/azul"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
