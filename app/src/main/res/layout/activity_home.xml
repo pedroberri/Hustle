@@ -103,4 +103,34 @@
         android:backgroundTint="@color/azul"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <ImageView
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/sol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/navBar"
+        app:layout_constraintTop_toTopOf="@+id/navBar"
+        app:layout_constraintVertical_bias="0.500" />
+
+    <ImageView
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/sol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/navBar"
+        app:layout_constraintTop_toTopOf="@+id/navBar"
+        app:layout_constraintVertical_bias="0.500" />
+
+    <ImageView
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/lupa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/navBar"
+        app:layout_constraintTop_toTopOf="@+id/navBar"
+        app:layout_constraintVertical_bias="0.500" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

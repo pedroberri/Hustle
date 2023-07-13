@@ -1,4 +1,4 @@
-package com.example.appstyle;
+package com.example.appstyle.api;
 
 public interface StringCallback {
 
