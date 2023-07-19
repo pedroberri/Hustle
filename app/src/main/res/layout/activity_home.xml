@@ -91,7 +91,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/card_home"
         android:backgroundTint="@color/cinza_escuro"
-        app:layout_constraintBottom_toTopOf=""
+        app:layout_constraintBottom_toTopOf="@id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
