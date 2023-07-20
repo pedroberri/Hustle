@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragment.WorkoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <View
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:background="@color/azulCirculo" />
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="370dp"
+        android:src="@drawable/ic_logout" />
 </FrameLayout>

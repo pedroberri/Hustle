@@ -20,12 +20,12 @@
         android:src="@drawable/logo" />
 
     <ImageView
-        android:id="@+id/settings"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="340dp"
-        android:src="@drawable/setting" />
+        android:layout_marginLeft="370dp"
+        android:src="@drawable/ic_logout" />
 
     <TextView
         android:id="@+id/weekDay"
@@ -65,7 +65,7 @@
     <View
         android:id="@+id/treinoDoDia"
         android:layout_width="380dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"

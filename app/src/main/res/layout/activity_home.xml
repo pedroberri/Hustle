@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBar"
@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:background="@color/azulCirculo"
         app:menu="@menu/bottom_nav_bar"
-        style="@style/Widget.App.BottomNavigationView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
