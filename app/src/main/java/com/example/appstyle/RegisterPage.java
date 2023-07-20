@@ -34,7 +34,6 @@ public class RegisterPage extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-
         InicializarCampos();
 
         //Sublima texto
