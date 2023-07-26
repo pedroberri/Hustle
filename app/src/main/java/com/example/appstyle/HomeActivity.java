@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
+
         replaceFragment(new HomeFragment());
 //        InicializarCampos();
 
