@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.example.appstyle.fragment.HomeFragment;
 import com.example.appstyle.fragment.SearchFragment;
 import com.example.appstyle.fragment.WorkoutFragment;
 
+import java.util.Objects;
+
 public class HomeActivity extends AppCompatActivity {
 
 
@@ -24,22 +27,17 @@ public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide();
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         replaceFragment(new HomeFragment());
-//        InicializarCampos();
 
-//        logout_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logout();
-//            }
-//        });
 
         binding.navBar.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -56,17 +54,6 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
-
-//    private void InicializarCampos() {
-//        logout_button = findViewById(R.id.logout);
-//    }
-
-//    private void logout() {
-//        FirebaseAuth.getInstance().signOut();
-//        Intent intent = new Intent(HomeActivity.this, LoginPage.class);
-//        startActivity(intent);
-//        finish();
-//    }
 
 
     private void replaceFragment(Fragment fragment) {
