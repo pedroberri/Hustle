@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SearchFragment">
 
-
     <View
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -19,4 +18,39 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="370dp"
         android:src="@drawable/ic_logout"/>
+
+    <TextView
+        android:id="@+id/search_text"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Search"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="30dp"/>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:paddingStart="16dp"
+        android:drawableStart="@drawable/lupamenor"
+        android:drawablePadding="8dp"
+        android:background="@drawable/edit_text"
+        android:textColor="@color/cinza"
+        android:fontFamily="sans-serif"
+        android:inputType="text"
+        android:hint="Research an exercise"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:id="@+id/div"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="175dp"
+        android:orientation="horizontal" />
+
 </FrameLayout>
