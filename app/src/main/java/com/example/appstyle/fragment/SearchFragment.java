@@ -39,25 +39,6 @@ public class SearchFragment extends Fragment {
                 logout();
             }
         });
-        return rootView;
-    }
-
-    private void logout() {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getActivity(), LoginPage.class);
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-
-    private void InicializarCampos(View rootView) {
-        logout_button = rootView.findViewById(R.id.logout);
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
         LinearLayout containerLayout = rootView.findViewById(R.id.div);
 
@@ -76,8 +57,20 @@ public class SearchFragment extends Fragment {
             // Adicione a TextView ao contêiner
             containerLayout.addView(textView);
         }
-
         return rootView;
-
     }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getActivity(), LoginPage.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+
+    private void InicializarCampos(View rootView) {
+        logout_button = rootView.findViewById(R.id.logout);
+    }
+
+
 }
