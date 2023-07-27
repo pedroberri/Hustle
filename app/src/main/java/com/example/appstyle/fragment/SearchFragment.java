@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import android.annotation.SuppressLint;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,14 +33,14 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        logout_button = rootView.findViewById(R.id.logout);
+        InicializarCampos(rootView);
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
             }
         });
-
         LinearLayout containerLayout = rootView.findViewById(R.id.div);
 
         // Define o número de views que você deseja criar
@@ -53,7 +54,7 @@ public class SearchFragment extends Fragment {
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setText("Texto da view " + (i + 1));
             textView.setTextSize(16); // Ajuste o tamanho do texto conforme necessário
-
+            textView.setTextColor(Color.BLACK);
             // Adicione a TextView ao contêiner
             containerLayout.addView(textView);
         }
