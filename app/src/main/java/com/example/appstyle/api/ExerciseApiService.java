@@ -16,7 +16,7 @@ public class ExerciseApiService {
     private static final String API_KEY = "2d8c47cb4fmsh7b70804dfc31b6bp1363c4jsnbdc68ce3fdb3";
 
     @SuppressLint("StaticFieldLeak")
-    public void getExercises(StringCallback callback){
+    public void getListOfBodyParts(StringCallback callback){
         new AsyncTask<Void, Void, String>() {
 
             @Override
@@ -24,14 +24,15 @@ public class ExerciseApiService {
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("https://exercisedb.p.rapidapi.com/exercises")
+                        .url(API_BASE_URL + "exercises/bodyPartList")
                         .get()
-                        .addHeader("X-RapidAPI-Key", "2d8c47cb4fmsh7b70804dfc31b6bp1363c4jsnbdc68ce3fdb3")
-                        .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
+                        .addHeader("X-RapidAPI-Key", API_KEY)
+                        .addHeader("X-RapidAPI-Host", API_HOST)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
                     String responseBody = response.body().string();
+
                     response.close();
                     return responseBody;
                 } catch (IOException e) {
