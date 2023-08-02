@@ -2,6 +2,9 @@ package com.example.appstyle.fragment;
 
 import android.content.Intent;
 
+import android.annotation.SuppressLint;
+
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -32,16 +35,31 @@ public class SearchFragment extends Fragment implements StringCallback {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        logout_button = rootView.findViewById(R.id.logout);
+        InicializarCampos(rootView);
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
             }
         });
-
         LinearLayout containerLayout = rootView.findViewById(R.id.div);
 
+        // Define o número de views que você deseja criar
+        int numberOfViews = 5;
+
+        for (int i = 0; i < numberOfViews; i++) {
+            // Crie uma nova TextView programaticamente
+            TextView textView = new TextView(requireContext());
+            textView.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            textView.setText("Texto da view " + (i + 1));
+            textView.setTextSize(16); // Ajuste o tamanho do texto conforme necessário
+            textView.setTextColor(Color.BLACK);
+            // Adicione a TextView ao contêiner
+            containerLayout.addView(textView);
+        }
         ExerciseApiService exerciseApiService = new ExerciseApiService();
         exerciseApiService.getListOfBodyParts(new StringCallback() {
             @Override

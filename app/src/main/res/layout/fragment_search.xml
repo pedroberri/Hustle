@@ -29,7 +29,7 @@
         android:textColor="@color/white"
         android:textSize="25dp"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="30dp"/>
+        android:layout_marginStart="40dp"/>
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -39,12 +39,14 @@
         android:drawableStart="@drawable/lupamenor"
         android:drawablePadding="8dp"
         android:background="@drawable/edit_text"
-        android:textColor="@color/cinza"
+        android:textColor="@color/black"
         android:fontFamily="sans-serif"
         android:inputType="text"
         android:hint="Research an exercise"
+        android:textColorHint="@color/cinza"
         android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        />
 
     <LinearLayout
         android:id="@+id/div"
