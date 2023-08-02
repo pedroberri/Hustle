@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.annotation.SuppressLint;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,13 +19,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.example.appstyle.api.StringCallback;
+import com.example.appstyle.api.ExerciseApiService;
 import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
-public class SearchFragment extends Fragment {
-
+public class SearchFragment extends Fragment implements StringCallback {
 
     private ImageView logout_button;
 
@@ -58,6 +60,43 @@ public class SearchFragment extends Fragment {
             // Adicione a TextView ao contêiner
             containerLayout.addView(textView);
         }
+        ExerciseApiService exerciseApiService = new ExerciseApiService();
+        exerciseApiService.getListOfBodyParts(new StringCallback() {
+            @Override
+            public void callbacK(String result) {
+
+                Gson gson = new Gson();
+                String[] bodyPartsArray = gson.fromJson(result, String[].class);
+
+                Drawable drawable = getResources().getDrawable(R.drawable.card_search);
+
+                for (int i = 0; i < bodyPartsArray.length; i++) {
+
+                    TextView textView = new TextView(requireContext());
+                    textView.setBackground(drawable);
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    textView.setTextSize(20);
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(0, 20, 0, 0);
+
+                    textView.setLayoutParams(params);
+
+                    if (bodyPartsArray != null && bodyPartsArray.length > 0) {
+                        String firstBodyPart = bodyPartsArray[i];
+                        String primeiraLetraMaiuscula = firstBodyPart.substring(0, 1).toUpperCase();
+                        String restanteTexto = firstBodyPart.substring(1);
+                        String textoComPrimeiraLetraMaiuscula = primeiraLetraMaiuscula + restanteTexto;
+                        textView.setText(textoComPrimeiraLetraMaiuscula);
+                    }
+
+                    containerLayout.addView(textView);
+                }
+            }
+        });
         return rootView;
     }
 
@@ -74,4 +113,8 @@ public class SearchFragment extends Fragment {
     }
 
 
+    @Override
+    public void callbacK(String value) {
+
+    }
 }
