@@ -71,7 +71,8 @@
         android:text="Sunday"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diasDaSemana" />
+        app:layout_constraintTop_toBottomOf="@+id/diasDaSemana"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxMonday"
@@ -80,7 +81,8 @@
         android:text="Monday"
         app:layout_constraintStart_toEndOf="@+id/checkBoxSunday"
         app:layout_constraintTop_toTopOf="@+id/checkBoxSunday"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxTuesday"
@@ -89,7 +91,8 @@
         android:text="Tuesday"
         app:layout_constraintStart_toEndOf="@+id/checkBoxMonday"
         app:layout_constraintTop_toTopOf="@+id/checkBoxMonday"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxWednesday"
@@ -98,7 +101,8 @@
         android:text="Wednesday"
         app:layout_constraintStart_toEndOf="@+id/checkBoxTuesday"
         app:layout_constraintTop_toTopOf="@+id/checkBoxTuesday"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxThurday"
@@ -108,7 +112,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxSunday"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxFriday"
@@ -117,7 +122,8 @@
         android:text="Friday"
         app:layout_constraintStart_toEndOf="@+id/checkBoxThurday"
         app:layout_constraintTop_toTopOf="@+id/checkBoxThurday"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"/>
 
     <CheckBox
         android:id="@+id/checkBoxSaturday"
@@ -126,7 +132,8 @@
         android:text="Saturday"
         app:layout_constraintStart_toEndOf="@+id/checkBoxFriday"
         app:layout_constraintTop_toTopOf="@+id/checkBoxFriday"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/buttonLogar"
