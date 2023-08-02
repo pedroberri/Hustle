@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_text"
         app:layout_constraintVertical_bias="0.5"
         android:text="New workout"
+        android:textColor="@color/black"
         android:drawableLeft="@drawable/ic_baseline_fitness_center_24"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
