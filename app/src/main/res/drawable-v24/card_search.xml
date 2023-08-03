@@ -10,7 +10,7 @@
     </corners>
 
     <size
-        android:width="150dp"
+        android:width="350dp"
         android:height="100dp">
     </size>
 

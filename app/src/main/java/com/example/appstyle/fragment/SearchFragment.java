@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.annotation.SuppressLint;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,7 @@ import com.example.appstyle.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-public class SearchFragment extends Fragment implements StringCallback {
+public class SearchFragment extends Fragment {
 
     private ImageView logout_button;
 
@@ -43,23 +45,8 @@ public class SearchFragment extends Fragment implements StringCallback {
                 logout();
             }
         });
+
         LinearLayout containerLayout = rootView.findViewById(R.id.div);
-
-        // Define o número de views que você deseja criar
-        int numberOfViews = 5;
-
-        for (int i = 0; i < numberOfViews; i++) {
-            // Crie uma nova TextView programaticamente
-            TextView textView = new TextView(requireContext());
-            textView.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            textView.setText("Texto da view " + (i + 1));
-            textView.setTextSize(16); // Ajuste o tamanho do texto conforme necessário
-            textView.setTextColor(Color.BLACK);
-            // Adicione a TextView ao contêiner
-            containerLayout.addView(textView);
-        }
         ExerciseApiService exerciseApiService = new ExerciseApiService();
         exerciseApiService.getListOfBodyParts(new StringCallback() {
             @Override
@@ -76,6 +63,15 @@ public class SearchFragment extends Fragment implements StringCallback {
                     textView.setBackground(drawable);
                     textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     textView.setTextSize(20);
+                    textView.setGravity(Gravity.CENTER_VERTICAL);
+                    textView.setTypeface(null, Typeface.BOLD);
+
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
 
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -112,9 +108,4 @@ public class SearchFragment extends Fragment implements StringCallback {
         logout_button = rootView.findViewById(R.id.logout);
     }
 
-
-    @Override
-    public void callbacK(String value) {
-
-    }
 }
