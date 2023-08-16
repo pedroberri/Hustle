@@ -62,7 +62,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"/>
 
-    <View
+    <TextView
+        android:text="AAAAAAAAAAAAAAAAAAAA"
         android:id="@+id/treinoDoDia"
         android:layout_width="380dp"
         android:layout_height="250dp"

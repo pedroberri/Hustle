@@ -7,17 +7,25 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.appstyle.databinding.ActivityHomeBinding;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.appstyle.fragment.HomeFragment;
 import com.example.appstyle.fragment.SearchFragment;
 import com.example.appstyle.fragment.WorkoutFragment;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
@@ -36,23 +44,33 @@ public class HomeActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+
         replaceFragment(new HomeFragment());
 
 
         binding.navBar.setOnItemSelectedListener(item -> {
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
+
             switch (item.getItemId()) {
                 case R.id.home:
-                    replaceFragment(new HomeFragment());
+                    if (!(currentFragment instanceof HomeFragment)) {
+                        replaceFragment(new HomeFragment());
+                    }
                     break;
                 case R.id.search:
-                    replaceFragment(new SearchFragment());
+                    if (!(currentFragment instanceof SearchFragment)) {
+                        replaceFragment(new SearchFragment());
+                    }
                     break;
                 case R.id.workout:
-                    replaceFragment(new WorkoutFragment());
+                    if (!(currentFragment instanceof WorkoutFragment)) {
+                        replaceFragment(new WorkoutFragment());
+                    }
                     break;
             }
             return true;
         });
+
     }
 
 
@@ -62,4 +80,8 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
     }
+
+
+
+
 }
