@@ -45,54 +45,6 @@ public class SearchFragment extends Fragment {
                 logout();
             }
         });
-
-        LinearLayout containerLayout = rootView.findViewById(R.id.div);
-        ExerciseApiService exerciseApiService = new ExerciseApiService();
-        exerciseApiService.getListOfBodyParts(new StringCallback() {
-            @Override
-            public void callbacK(String result) {
-
-                Gson gson = new Gson();
-                String[] bodyPartsArray = gson.fromJson(result, String[].class);
-
-                Drawable drawable = getResources().getDrawable(R.drawable.card_search);
-
-                for (int i = 0; i < bodyPartsArray.length; i++) {
-
-                    TextView textView = new TextView(requireContext());
-                    textView.setBackground(drawable);
-                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    textView.setTextSize(20);
-                    textView.setGravity(Gravity.CENTER_VERTICAL);
-                    textView.setTypeface(null, Typeface.BOLD);
-
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    });
-
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                    );
-                    params.setMargins(0, 20, 0, 0);
-
-                    textView.setLayoutParams(params);
-
-                    if (bodyPartsArray != null && bodyPartsArray.length > 0) {
-                        String firstBodyPart = bodyPartsArray[i];
-                        String primeiraLetraMaiuscula = firstBodyPart.substring(0, 1).toUpperCase();
-                        String restanteTexto = firstBodyPart.substring(1);
-                        String textoComPrimeiraLetraMaiuscula = primeiraLetraMaiuscula + restanteTexto;
-                        textView.setText(textoComPrimeiraLetraMaiuscula);
-                    }
-
-                    containerLayout.addView(textView);
-                }
-            }
-        });
         return rootView;
     }
 
