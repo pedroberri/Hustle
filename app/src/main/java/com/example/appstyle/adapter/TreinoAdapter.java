@@ -51,7 +51,7 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
         @SuppressLint("ResourceAsColor")
         public void bind(String nomeTreino) {
             textViewNomeTreino.setText(nomeTreino);
-            textViewNomeTreino.setBackgroundResource(R.drawable.card_c1);
+            textViewNomeTreino.setBackgroundResource(R.drawable.card_c2);
         }
     }
 }
