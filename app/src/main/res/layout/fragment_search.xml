@@ -59,8 +59,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec"
-        android:layout_width=""
-        android:layout_height=""/>
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

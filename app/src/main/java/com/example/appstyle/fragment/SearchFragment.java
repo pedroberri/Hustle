@@ -37,11 +37,11 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private ImageView logout_button;
-    List<String> itemList = new ArrayList<>(Arrays.asList(
+    private RecyclerView recyclerView;
+    private List<String> itemList = new ArrayList<>(Arrays.asList(
             "Back", "Cardio", "Chest", "Lower arms", "Lower legs",
             "Neck", "Shoulders", "Upper arms", "Upper legs", "Waist"
     ));
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +54,11 @@ public class SearchFragment extends Fragment {
                 logout();
             }
         });
+
+        // Pesquisa
+        PesquisaAdapter pesquisaAdapter = new PesquisaAdapter(itemList);
+        recyclerView.setAdapter(pesquisaAdapter);
+
         return rootView;
     }
 
@@ -67,9 +72,7 @@ public class SearchFragment extends Fragment {
 
     private void InicializarCampos(View rootView) {
         logout_button = rootView.findViewById(R.id.logout);
-        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
-        PesquisaAdapter adapter = new PesquisaAdapter(itemList);
-        recyclerView.setAdapter(adapter);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
     }
 
 }

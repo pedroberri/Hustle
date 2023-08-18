@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
+import com.example.appstyle.adapter.PesquisaAdapter;
 import com.example.appstyle.api.ExerciseApiService;
 import com.example.appstyle.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +26,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -31,7 +35,6 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
     private TreinoViewModel treinoViewModel;
-
     private ImageView logout_button;
     private TextView weekDayTextView, dateTextView, treinoText;
 

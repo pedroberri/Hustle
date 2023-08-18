@@ -13,12 +13,12 @@
         android:textAlignment="center"
         android:gravity="center_vertical"
         android:textSize="20dp"
-        android:text="Teste"
+        android:textColor="@color/black"
         android:background="@drawable/card_search"
         tools:ignore="RtlCompat" />
 
     <View
-        android:layout_width="10dp"
+        android:layout_width="50dp"
         android:layout_height="0dp"
         android:layout_weight="0" />
 
@@ -30,7 +30,7 @@
         android:textAlignment="center"
         android:gravity="center_vertical"
         android:textSize="20dp"
-        android:text="Teste"
+        android:textColor="@color/black"
         android:background="@drawable/card_search"
         tools:ignore="RtlCompat" />
 
