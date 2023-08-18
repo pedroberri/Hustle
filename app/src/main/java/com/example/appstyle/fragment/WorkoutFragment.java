@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
 import com.example.appstyle.WorkoutRegisterActivity;
 import com.example.appstyle.adapter.TreinoAdapter;
+import com.example.appstyle.decorator.SpaceItemDecoration;
 import com.example.appstyle.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -40,10 +42,14 @@ public class WorkoutFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         treinoViewModel = new ViewModelProvider(requireActivity()).get(TreinoViewModel.class);
-
         TreinoAdapter adapter = new TreinoAdapter();
 
         recyclerView.setAdapter(adapter);
+
+
+        // Aplicar o SpaceItemDecoration
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
 
         // Observar os treinos da ViewModel
         treinoViewModel.getTreinos().observe(getViewLifecycleOwner(), treinos -> {

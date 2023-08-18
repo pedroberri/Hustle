@@ -13,4 +13,14 @@
     <color name="cinza_claro">#CBCBCB</color>
     <color name="azul">#4182AE</color>
     <color name="azulCirculo">#284B63</color>
+
+    <color name="C1">#323031</color>
+    <color name="C2">#7F7979</color>
+    <color name="C3">#3D3B3C</color>
+    <color name="C4">#5F5B6B</color>
+    <color name="C5">#6c757d</color>
+    <color name="C6">#4c5c68</color>
+
+
+
 </resources>

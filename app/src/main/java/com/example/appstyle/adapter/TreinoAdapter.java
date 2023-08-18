@@ -48,8 +48,10 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
             textViewNomeTreino = itemView.findViewById(R.id.textViewNomeTreino);
         }
 
+        @SuppressLint("ResourceAsColor")
         public void bind(String nomeTreino) {
             textViewNomeTreino.setText(nomeTreino);
+            textViewNomeTreino.setBackgroundResource(R.drawable.card_c2);
         }
     }
 }
