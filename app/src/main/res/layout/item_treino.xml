@@ -8,12 +8,13 @@
     tools:context=".fragment.WorkoutFragment">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/textViewNomeTreino"
         android:layout_width="380dp"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
         android:padding="16dp"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
