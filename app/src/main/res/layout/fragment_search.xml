@@ -58,6 +58,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    Fazer RecycleView-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec"
+        android:layout_width=""
+        android:layout_height=""/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
