@@ -32,7 +32,7 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
 
     @Override
     public void onBindViewHolder(@NonNull TreinoViewHolder holder, int position) {
-        holder.bind(treinos.get(position));
+        holder.bind(treinos.get(position), position);
     }
 
     @Override
@@ -42,16 +42,20 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
 
     static class TreinoViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNomeTreino;
+        int[] backgroundDrawables = {R.drawable.card_c1, R.drawable.card_c2, R.drawable.card_c3,
+                R.drawable.card_c4,R.drawable.card_c5,R.drawable.card_c6,R.drawable.card_c7};
 
-        public TreinoViewHolder(@NonNull View itemView) {
+
+    public TreinoViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewNomeTreino = itemView.findViewById(R.id.textViewNomeTreino);
         }
 
         @SuppressLint("ResourceAsColor")
-        public void bind(String nomeTreino) {
+        public void bind(String nomeTreino, int position) {
             textViewNomeTreino.setText(nomeTreino);
-            textViewNomeTreino.setBackgroundResource(R.drawable.card_c2);
+            textViewNomeTreino.setBackgroundResource(backgroundDrawables[position % backgroundDrawables.length]);
+
         }
     }
 }

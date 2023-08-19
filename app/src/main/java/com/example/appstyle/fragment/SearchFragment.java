@@ -77,7 +77,7 @@ public class SearchFragment extends Fragment {
 
     private void InicializarCampos(View rootView) {
         logout_button = rootView.findViewById(R.id.logout);
-        recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView = rootView.findViewById(R.id.recyclerViewSearch);
     }
 
 }
