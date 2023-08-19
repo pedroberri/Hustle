@@ -14,7 +14,6 @@
         android:gravity="center_vertical"
         android:textSize="20dp"
         android:textColor="@color/black"
-        android:background="@drawable/card_search"
         tools:ignore="RtlCompat" />
 
     <View
@@ -31,7 +30,6 @@
         android:gravity="center_vertical"
         android:textSize="20dp"
         android:textColor="@color/black"
-        android:background="@drawable/card_search"
         tools:ignore="RtlCompat" />
 
 </LinearLayout>
