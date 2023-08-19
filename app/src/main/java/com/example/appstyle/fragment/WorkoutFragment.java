@@ -46,7 +46,6 @@ public class WorkoutFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-
         // Aplicar o SpaceItemDecoration
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing);
         recyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));

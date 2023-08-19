@@ -31,17 +31,11 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.ViewHo
         int startIndex = position * 2;
         if (startIndex < itemList.size()) {
             holder.textView1.setText(itemList.get(startIndex));
-            holder.textView1.setVisibility(View.VISIBLE);
-        } else {
-            holder.textView1.setVisibility(View.INVISIBLE);
         }
 
         int endIndex = startIndex + 1;
         if (endIndex < itemList.size()) {
             holder.textView2.setText(itemList.get(endIndex));
-            holder.textView2.setVisibility(View.VISIBLE);
-        } else {
-            holder.textView2.setVisibility(View.INVISIBLE);
         }
     }
 

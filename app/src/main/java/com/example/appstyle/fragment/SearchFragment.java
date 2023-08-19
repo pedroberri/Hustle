@@ -27,6 +27,7 @@ import com.example.appstyle.api.StringCallback;
 import com.example.appstyle.api.ExerciseApiService;
 import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
+import com.example.appstyle.decorator.SpaceItemDecoration;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -58,6 +59,10 @@ public class SearchFragment extends Fragment {
         // Pesquisa
         PesquisaAdapter pesquisaAdapter = new PesquisaAdapter(itemList);
         recyclerView.setAdapter(pesquisaAdapter);
+
+        // Aplicar o SpaceItemDecoration
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
 
         return rootView;
     }
