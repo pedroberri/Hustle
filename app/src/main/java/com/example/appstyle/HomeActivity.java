@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.appstyle.api.QuoteApiService;
+import com.example.appstyle.api.StringCallback;
 import com.example.appstyle.databinding.ActivityHomeBinding;
 import com.example.appstyle.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +22,10 @@ import com.example.appstyle.fragment.SearchFragment;
 import com.example.appstyle.fragment.WorkoutFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,7 +85,37 @@ public class HomeActivity extends AppCompatActivity {
             buscarTreinoDoDia();
         }
 
+        if (treinoViewModel.getQuote().getValue() == null) {
+            buscaQuote();
+        }
 
+
+    }
+
+    private void buscaQuote() {
+        QuoteApiService quoteApiService = new QuoteApiService();
+        quoteApiService.getRandomQuote(new StringCallback() { @Override
+        public void callbacK(String response) {
+            if (response != null) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    // Verificando se a lista não está vazia
+                    if (jsonArray.length() > 0) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(0); // Pega o primeiro objeto da lista
+
+                        String content = jsonObject.getString("content");
+                        String author = jsonObject.getString("author");
+                        treinoViewModel.setQuote(content + "\n" + author);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // Trate o caso de erro
+            }
+        }
+        });
     }
 
 
@@ -110,6 +146,7 @@ public class HomeActivity extends AppCompatActivity {
                             listaDeTreinos.add(treinoSnapshot.getId());
                             String diaSemanaTreino = treinoSnapshot.getString("diaSemana");
 
+                            assert diaSemanaTreino != null;
                             int diaSemanaTreinoNumero = converterDiaSemanaParaNumero(diaSemanaTreino);
 
                             if (diaSemanaTreinoNumero == diaAtual) {
