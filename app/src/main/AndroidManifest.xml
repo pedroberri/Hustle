@@ -15,6 +15,13 @@
         android:theme="@style/Theme.AppStyle"
         tools:targetApi="31">
         <activity
+            android:name=".OpenSearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WorkoutRegisterActivity"
             android:exported="false">
             <meta-data

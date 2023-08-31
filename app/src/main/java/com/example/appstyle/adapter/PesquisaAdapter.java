@@ -1,5 +1,8 @@
 package com.example.appstyle.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.appstyle.OpenSearchActivity;
 import com.example.appstyle.R;
 
 import java.util.List;
@@ -36,7 +43,6 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.ViewHo
         if (startIndex < itemList.size()) {
             holder.drawable1.setText(itemList.get(startIndex));
             holder.drawable1.setBackgroundResource(backgrounds[startIndex]);
-
         }
 
         int endIndex = startIndex + 1;
@@ -56,9 +62,26 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.ViewHo
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             drawable1 = itemView.findViewById(R.id.tv1);
             drawable2 = itemView.findViewById(R.id.tv2);
+
+            drawable1.setOnClickListener(view -> {
+                String text = drawable1.getText().toString();
+                Context context = view.getContext();
+
+                Intent intent = new Intent(context, OpenSearchActivity.class);
+                intent.putExtra("text", text);
+                context.startActivity(intent);
+            });
+
+            drawable2.setOnClickListener(view -> {
+                String text = drawable2.getText().toString();
+                Context context = view.getContext();
+
+                Intent intent = new Intent(context, OpenSearchActivity.class);
+                intent.putExtra("text", text);
+                context.startActivity(intent);
+            });
         }
     }
 }
