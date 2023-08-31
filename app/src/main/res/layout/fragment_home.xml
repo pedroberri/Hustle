@@ -65,31 +65,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
+    <TextView
+        android:layout_marginTop="40dp"
         android:id="@+id/frases"
-        android:layout_marginTop="20dp"
         android:layout_width="380dp"
         android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/card_home"
-        android:backgroundTint="@color/cinza_claro"
+        android:backgroundTint="@color/C4"
+        android:gravity="center"
+        android:text="Quote"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        />
 
     <TextView
+        android:id="@+id/treinoDoDia"
         android:text="Nenhum treino cadastrado para hoje"
         android:textSize="24dp"
-        android:id="@+id/treinoDoDia"
         android:layout_width="380dp"
         android:layout_height="250dp"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/card_home"
-        android:backgroundTint="@color/cinza_claro"
+        android:backgroundTint="@color/C6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frases" />
+        app:layout_constraintTop_toBottomOf="@+id/frases"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

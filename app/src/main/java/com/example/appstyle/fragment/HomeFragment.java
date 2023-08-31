@@ -20,10 +20,16 @@ import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
 import com.example.appstyle.adapter.PesquisaAdapter;
 import com.example.appstyle.api.ExerciseApiService;
+import com.example.appstyle.api.QuoteApiService;
+import com.example.appstyle.api.StringCallback;
 import com.example.appstyle.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +42,7 @@ public class HomeFragment extends Fragment {
 
     private TreinoViewModel treinoViewModel;
     private ImageView logout_button;
-    private TextView weekDayTextView, dateTextView, treinoText;
+    private TextView weekDayTextView, dateTextView, treinoText, quoteText;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -63,12 +69,17 @@ public class HomeFragment extends Fragment {
             treinoText.setText(treino);
         });
 
+        treinoViewModel.getQuote().observe(getViewLifecycleOwner(), quote -> {
+            quoteText.setText(quote);
+        });
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
             }
         });
+
         return rootView;
     }
 
@@ -85,6 +96,7 @@ public class HomeFragment extends Fragment {
         weekDayTextView = rootView.findViewById(R.id.weekDay);
         dateTextView = rootView.findViewById(R.id.date);
         treinoText = rootView.findViewById(R.id.treinoDoDia);
+        quoteText = rootView.findViewById(R.id.frases);
     }
 
     private String getDayWithSuffix(int day) {
