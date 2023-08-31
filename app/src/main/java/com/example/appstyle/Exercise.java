@@ -10,6 +10,13 @@ public class Exercise {
 
     private String gif;
 
+    public Exercise(String name, String target, String equipament, String gif) {
+        this.name = name;
+        this.target = target;
+        this.equipament = equipament;
+        this.gif = gif;
+    }
+
     public String getTarget() {
         return target;
     }
