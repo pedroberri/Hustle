@@ -37,7 +37,38 @@ public class ExerciseApiService {
                 try {
                     Response response = client.newCall(request).execute();
                     String responseBody = Objects.requireNonNull(response.body()).string();
-                    Log.e("api",responseBody);
+                    response.close();
+                    return responseBody;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                callback.callbacK(result);
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void getSearch(String search, StringCallback callback) {
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected String doInBackground(Void... params) {
+                OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        .url(API_BASE_URL + "exercises/name/" + search)
+                        .get()
+                        .addHeader("X-RapidAPI-Key", API_KEY)
+                        .addHeader("X-RapidAPI-Host", API_HOST)
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    String responseBody = Objects.requireNonNull(response.body()).string();
                     response.close();
                     return responseBody;
                 } catch (IOException e) {

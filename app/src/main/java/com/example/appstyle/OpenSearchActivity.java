@@ -31,7 +31,7 @@ public class OpenSearchActivity extends AppCompatActivity {
 
     private ImageView logout_button;
     private TextView props;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewOpen;
     private ExerciseApiService exerciseApiService = new ExerciseApiService();
     private List<Exercise> exercises = new ArrayList<>();
 
@@ -52,6 +52,31 @@ public class OpenSearchActivity extends AppCompatActivity {
             }
         });
 
+//        exerciseApiService.getSearch(search, new StringCallback() {
+//            @Override
+//            public void callbacK(String value) {
+//                if (value != null) {
+//                    Log.e("valueReturn", value);
+//                    try {
+//                        JSONArray jsonArray = new JSONArray(value);
+//                        if (jsonArray.length() > 0) {
+//                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+//
+//                            String name = jsonObject.getString("name");
+//                            String target = jsonObject.getString("target");
+//                            String equipament = jsonObject.getString("equipment");
+//                            Exercise exercise = new Exercise(name, target, equipament);
+//                            exercises.add(exercise);
+//                            OpenSearchAdapter adapter = new OpenSearchAdapter(exercises);
+//                            recyclerViewOpen.setAdapter(adapter);
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+
         exerciseApiService.getListOfExercises(props.getText().toString().toLowerCase(), new StringCallback() {
             @Override
             public void callbacK(String value) {
@@ -59,17 +84,18 @@ public class OpenSearchActivity extends AppCompatActivity {
                     try {
                         JSONArray jsonArray = new JSONArray(value);
                         if (jsonArray.length() > 0) {
-                            Log.e("jsonArray", jsonArray.toString());
-                            JSONObject jsonObject = jsonArray.getJSONObject(0); // Pega o primeiro objeto da lista
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String name = jsonObject.getString("name");
+                                String target = jsonObject.getString("target");
+                                String equipament = jsonObject.getString("equipment");
+                                String gif = jsonObject.getString("gifUrl");
+                                Exercise exercise = new Exercise(name, target, equipament, gif);
+                                exercises.add(exercise);
+                            }
 
-                            String name = jsonObject.getString("name");
-                            String target = jsonObject.getString("target");
-                            String equipament = jsonObject.getString("equipment");
-                            String gif = jsonObject.getString("gifUrl");
-                            Exercise exercise = new Exercise(name, target, equipament, gif);
-                            exercises.add(exercise);
                             OpenSearchAdapter adapter = new OpenSearchAdapter(exercises);
-                            recyclerView.setAdapter(adapter);
+                            recyclerViewOpen.setAdapter(adapter);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -87,7 +113,7 @@ public class OpenSearchActivity extends AppCompatActivity {
 
     private void InicializarCampos() {
         logout_button = findViewById(R.id.logout);
-        recyclerView = findViewById(R.id.recyclerViewSearch);
+        recyclerViewOpen = findViewById(R.id.recyclerViewOpenSearch);
         props = findViewById(R.id.props);
     }
 }

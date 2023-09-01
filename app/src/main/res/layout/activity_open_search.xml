@@ -16,42 +16,28 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/logout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/logout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/props"
-        android:layout_width="300dp"
-        android:layout_height="35dp"
-        android:fontFamily="sans-serif-black"
-        android:textAlignment="viewStart"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:id="@+id/workout"
-        android:layout_width="190dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/props"
-        app:layout_constraintVertical_bias="0.5"
-        android:text="Filter"
-        android:textColor="@color/black"
-        android:drawableLeft="@drawable/ic_baseline_filter_list_24"/>
+            android:id="@+id/props"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:fontFamily="sans-serif-black"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:layout_marginTop="40dp"
+            android:text="Neck"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="@+id/header"
+            app:layout_constraintBottom_toBottomOf="@+id/header"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOpenSearch"
@@ -62,6 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        android:layout_marginBottom="55dp"/>
+        android:layout_marginTop="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

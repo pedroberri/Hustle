@@ -1,5 +1,6 @@
 package com.example.appstyle.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.appstyle.Exercise;
 import com.example.appstyle.R;
 
@@ -25,7 +28,7 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_open_search, parent, false);
         return new ViewHolder(view);
     }
 
@@ -34,12 +37,15 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
         holder.name.setText(exercises.get(position).getName());
         holder.target.setText(exercises.get(position).getTarget());
         holder.equipament.setText(exercises.get(position).getEquipament());
-        holder.gif.setImageResource(Integer.parseInt(exercises.get(position).getGif()));
+        Glide.with(holder.itemView.getContext())
+                .load(exercises.get(position).getGif())
+                .transition(DrawableTransitionOptions.withCrossFade()) // Opcional: adicionar efeito de transição
+                .into(holder.gif);
     }
 
     @Override
     public int getItemCount() {
-        return (int) Math.ceil((double) exercises.size() / 2);
+        return exercises.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
