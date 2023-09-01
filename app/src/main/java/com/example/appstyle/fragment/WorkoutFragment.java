@@ -17,14 +17,12 @@ import android.widget.ImageView;
 
 import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
+import com.example.appstyle.WorkoutActivity;
 import com.example.appstyle.WorkoutRegisterActivity;
 import com.example.appstyle.adapter.TreinoAdapter;
 import com.example.appstyle.decorator.SpaceItemDecoration;
-import com.example.appstyle.model.TreinoViewModel;
+import com.example.appstyle.fragment.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
-
 public class WorkoutFragment extends Fragment {
 
     private ImageView logout_button;
@@ -44,6 +42,16 @@ public class WorkoutFragment extends Fragment {
         treinoViewModel = new ViewModelProvider(requireActivity()).get(TreinoViewModel.class);
         TreinoAdapter adapter = new TreinoAdapter();
 
+
+        adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener()  {
+            @Override
+            public void onItemClick(String nomeTreino) {
+                Intent intent = new Intent(requireContext(), WorkoutActivity.class);
+                intent.putExtra("treino", nomeTreino);
+                startActivity(intent);
+            }
+        });
+
         recyclerView.setAdapter(adapter);
 
         // Aplicar o SpaceItemDecoration
@@ -51,9 +59,7 @@ public class WorkoutFragment extends Fragment {
         recyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
 
         // Observar os treinos da ViewModel
-        treinoViewModel.getTreinos().observe(getViewLifecycleOwner(), treinos -> {
-            adapter.setTreinos(treinos);
-        });
+        treinoViewModel.getTreinos().observe(getViewLifecycleOwner(), adapter::setTreinos);
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override

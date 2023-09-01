@@ -1,4 +1,4 @@
-package com.example.appstyle.model;
+package com.example.appstyle.fragment.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

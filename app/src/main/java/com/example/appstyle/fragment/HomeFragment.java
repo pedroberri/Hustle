@@ -6,36 +6,21 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.appstyle.LoginPage;
 import com.example.appstyle.R;
-import com.example.appstyle.adapter.PesquisaAdapter;
-import com.example.appstyle.api.ExerciseApiService;
-import com.example.appstyle.api.QuoteApiService;
-import com.example.appstyle.api.StringCallback;
-import com.example.appstyle.model.TreinoViewModel;
+import com.example.appstyle.fragment.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
@@ -43,6 +28,7 @@ public class HomeFragment extends Fragment {
     private TreinoViewModel treinoViewModel;
     private ImageView logout_button;
     private TextView weekDayTextView, dateTextView, treinoText, quoteText;
+    private ProgressBar progressBar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -65,12 +51,16 @@ public class HomeFragment extends Fragment {
         dateTextView.setText(dayWithSuffix + " " + month);
 
         treinoViewModel = new ViewModelProvider(requireActivity()).get(TreinoViewModel.class);
-        treinoViewModel.getTreinoDoDia().observe(getViewLifecycleOwner(), treino -> {
-            treinoText.setText(treino);
-        });
 
         treinoViewModel.getQuote().observe(getViewLifecycleOwner(), quote -> {
             quoteText.setText(quote);
+            quoteText.setVisibility(View.VISIBLE);
+        });
+
+        treinoViewModel.getTreinoDoDia().observe(getViewLifecycleOwner(), treino -> {
+            treinoText.setText(treino);
+            treinoText.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
         });
 
         logout_button.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +87,7 @@ public class HomeFragment extends Fragment {
         dateTextView = rootView.findViewById(R.id.date);
         treinoText = rootView.findViewById(R.id.treinoDoDia);
         quoteText = rootView.findViewById(R.id.frases);
+        progressBar = rootView.findViewById(R.id.progress_bar);
     }
 
     private String getDayWithSuffix(int day) {
