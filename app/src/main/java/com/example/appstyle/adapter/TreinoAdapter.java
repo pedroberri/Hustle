@@ -16,6 +16,13 @@ import java.util.ArrayList;
 public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoViewHolder> {
 
     private ArrayList<String> treinos = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+
+
+    //Pegar o treino que foi clicado
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void setTreinos(ArrayList<String> treinos) {
@@ -32,13 +39,25 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
 
     @Override
     public void onBindViewHolder(@NonNull TreinoViewHolder holder, int position) {
-        holder.bind(treinos.get(position), position);
+        String nomeTreino = treinos.get(position);
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(nomeTreino);
+            }
+        });
+        holder.bind(nomeTreino, position);
     }
 
     @Override
     public int getItemCount() {
         return treinos.size();
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(String nomeTreino);
+    }
+
+
 
     static class TreinoViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNomeTreino;

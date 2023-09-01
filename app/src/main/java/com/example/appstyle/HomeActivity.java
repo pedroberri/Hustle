@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.example.appstyle.api.QuoteApiService;
 import com.example.appstyle.api.StringCallback;
 import com.example.appstyle.databinding.ActivityHomeBinding;
-import com.example.appstyle.model.TreinoViewModel;
+import com.example.appstyle.fragment.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.appstyle.fragment.HomeFragment;
