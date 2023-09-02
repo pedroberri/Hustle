@@ -39,7 +39,7 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
         holder.equipament.setText(exercises.get(position).getEquipament());
         Glide.with(holder.itemView.getContext())
                 .load(exercises.get(position).getGif())
-                .transition(DrawableTransitionOptions.withCrossFade()) // Opcional: adicionar efeito de transição
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.gif);
     }
 

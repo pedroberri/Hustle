@@ -9,7 +9,7 @@
     <View
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="100dp"
         android:background="@color/azulCirculo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,22 +19,19 @@
             android:id="@+id/logout"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginStart="30dp"
-            android:src="@drawable/ic_logout"
+            android:src="@drawable/arrow_back_24"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="@+id/header"
+            app:layout_constraintEnd_toStartOf="@+id/props"/>
 
     <TextView
             android:id="@+id/props"
-            android:layout_width="300dp"
+            android:layout_width="230dp"
             android:layout_height="35dp"
             android:fontFamily="sans-serif-black"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:layout_marginTop="40dp"
-            android:text="Neck"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="@+id/header"
             app:layout_constraintBottom_toBottomOf="@+id/header"/>

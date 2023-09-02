@@ -11,9 +11,9 @@ public class Exercise {
     private String gif;
 
     public Exercise(String name, String target, String equipament, String gif) {
-        this.name = name;
-        this.target = target;
-        this.equipament = equipament;
+        this.name = capitalizeFirstLetter(name);
+        this.target = capitalizeFirstLetter(target);
+        this.equipament = capitalizeFirstLetter(equipament);
         this.gif = gif;
     }
 

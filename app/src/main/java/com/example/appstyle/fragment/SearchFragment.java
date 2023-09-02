@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.inputmethod.EditorInfo;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.appstyle.OpenSearchActivity;
+import com.example.appstyle.SearchNameActivity;
 import com.example.appstyle.adapter.PesquisaAdapter;
 import com.example.appstyle.api.StringCallback;
 import com.example.appstyle.api.ExerciseApiService;
@@ -38,7 +41,7 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
 
-    private ExerciseApiService exerciseApiService = new ExerciseApiService();
+    private TextView searchInput;
     private ImageView logout_button;
     private RecyclerView recyclerView;
     private List<String> itemList = new ArrayList<>(Arrays.asList(
@@ -56,6 +59,16 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 logout();
             }
+        });
+
+        searchInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                Intent intent = new Intent(v.getContext(), SearchNameActivity.class);
+                intent.putExtra("text", searchInput.getText());
+                startActivity(intent);
+                return true;
+            }
+            return false;
         });
 
         // Pesquisa
@@ -78,6 +91,7 @@ public class SearchFragment extends Fragment {
 
 
     private void InicializarCampos(View rootView) {
+        searchInput = rootView.findViewById(R.id.searchInput);
         logout_button = rootView.findViewById(R.id.logout);
         recyclerView = rootView.findViewById(R.id.recyclerViewSearch);
     }

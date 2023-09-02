@@ -13,7 +13,7 @@
         android:textAlignment="center"
         android:gravity="center_vertical"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:ignore="RtlCompat" />
 
     <View
@@ -29,7 +29,7 @@
         android:textAlignment="center"
         android:gravity="center_vertical"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:ignore="RtlCompat" />
 
 </LinearLayout>

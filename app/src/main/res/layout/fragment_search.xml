@@ -41,22 +41,21 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/edit_text"
-        android:drawableStart="@drawable/lupamenor"
-        android:drawablePadding="8dp"
-        android:fontFamily="sans-serif"
-        android:hint="Research an exercise"
-        android:inputType="text"
-        android:paddingStart="16dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/cinza"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/searchInput"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_text"
+            android:drawableStart="@drawable/lupamenor"
+            android:drawablePadding="8dp"
+            android:fontFamily="sans-serif"
+            android:hint="Research an exercise"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:paddingStart="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cinza" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/header" app:layout_constraintBottom_toBottomOf="@+id/header"
+            app:layout_constraintTop_toBottomOf="@+id/search_text"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"

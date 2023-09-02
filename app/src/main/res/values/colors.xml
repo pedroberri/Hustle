@@ -14,16 +14,16 @@
     <color name="azul">#4182AE</color>
     <color name="azulCirculo">#284B63</color>
 
-    <color name="C1">#323031</color>
-    <color name="C2">#7F7979</color>
-    <color name="C3">#3D3B3C</color>
-    <color name="C4">#5F5B6B</color>
-    <color name="C5">#6c757d</color>
-    <color name="C6">#4c5c68</color>
-    <color name="C7">#4c5c68</color>
-    <color name="C8">#4c5c68</color>
-    <color name="C9">#4c5c68</color>
-    <color name="C10">#4c5c68</color>
+    <color name="C1">#335f7d</color>
+    <color name="C2">#225f8a</color>
+    <color name="C3">#174d73</color>
+    <color name="C4">#0b3d61</color>
+    <color name="C5">#032f4f</color>
+    <color name="C6">#001233</color>
+    <color name="C7">#33415c</color>
+    <color name="C8">#5c677d</color>
+    <color name="C9">#7d8597</color>
+    <color name="C10">#979dac</color>
 
 
 </resources>

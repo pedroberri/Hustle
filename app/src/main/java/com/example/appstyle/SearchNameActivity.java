@@ -1,33 +1,24 @@
 package com.example.appstyle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.appstyle.adapter.OpenSearchAdapter;
 import com.example.appstyle.api.ExerciseApiService;
 import com.example.appstyle.api.StringCallback;
-import com.example.appstyle.fragment.SearchFragment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
-public class OpenSearchActivity extends AppCompatActivity {
+public class SearchNameActivity extends AppCompatActivity {
 
     private ImageView logout_button;
     private TextView props;
@@ -35,11 +26,11 @@ public class OpenSearchActivity extends AppCompatActivity {
     private ExerciseApiService exerciseApiService = new ExerciseApiService();
     private List<Exercise> exercises = new ArrayList<>();
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_search);
+
         InicializarCampos();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
@@ -51,10 +42,10 @@ public class OpenSearchActivity extends AppCompatActivity {
                 logout();
             }
         });
-
-        exerciseApiService.getListOfExercises(props.getText().toString().toLowerCase(), new StringCallback() {
+        exerciseApiService.getSearch(props.getText().toString().toLowerCase(), new StringCallback() {
             @Override
             public void callbacK(String value) {
+                Log.e("valueReturn", value);
                 if (value != null) {
                     try {
                         JSONArray jsonArray = new JSONArray(value);
@@ -68,8 +59,6 @@ public class OpenSearchActivity extends AppCompatActivity {
                                 Exercise exercise = new Exercise(name, target, equipament, gif);
                                 exercises.add(exercise);
                             }
-                            OpenSearchAdapter adapter = new OpenSearchAdapter(exercises);
-                            recyclerViewOpen.setAdapter(adapter);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
