@@ -85,6 +85,7 @@ public class WorkoutRegisterActivity extends AppCompatActivity {
     }
 
     private void salvarTreino(String dayOfTheWeek) {
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -95,7 +96,6 @@ public class WorkoutRegisterActivity extends AppCompatActivity {
 
             Map<String, Object> treino1 = new HashMap<>();
             treino1.put("diaSemana", dayOfTheWeek);
-
             CollectionReference treinosRef = documentReference.collection("treinos");
             DocumentReference treino1Ref = treinosRef.document(workoutName.getText().toString());
 

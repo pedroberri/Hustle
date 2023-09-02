@@ -93,7 +93,6 @@ public class OpenSearchActivity extends AppCompatActivity {
                                 Exercise exercise = new Exercise(name, target, equipament, gif);
                                 exercises.add(exercise);
                             }
-
                             OpenSearchAdapter adapter = new OpenSearchAdapter(exercises);
                             recyclerViewOpen.setAdapter(adapter);
                         }

@@ -23,20 +23,23 @@
                     android:id="@+id/target"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                android:textColor="@color/black"/>
 
             <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:textSize="23sp" />
+                    android:textSize="23sp"
+                android:textColor="@color/black"/>
 
             <TextView
                     android:id="@+id/equipament"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
