@@ -9,29 +9,28 @@
     <View
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="100dp"
         android:background="@color/azulCirculo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/logo"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        android:src="@drawable/logo"
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/treino"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-black"
-        android:text="Wednesday"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"
@@ -40,5 +39,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewWorkout"
+        android:layout_width="380dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        android:layout_marginTop="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
