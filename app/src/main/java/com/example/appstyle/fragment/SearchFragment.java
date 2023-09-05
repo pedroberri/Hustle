@@ -64,7 +64,8 @@ public class SearchFragment extends Fragment {
         searchInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 Intent intent = new Intent(v.getContext(), SearchNameActivity.class);
-                intent.putExtra("text", searchInput.getText());
+                Log.e("textProps", searchInput.getText().toString());
+                intent.putExtra("text", searchInput.getText().toString());
                 startActivity(intent);
                 return true;
             }
