@@ -1,9 +1,12 @@
 package com.example.appstyle.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.appstyle.AddExerciseActivity;
 import com.example.appstyle.Exercise;
+import com.example.appstyle.OpenSearchActivity;
 import com.example.appstyle.R;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.ViewHolder> {
@@ -41,6 +47,11 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
                 .load(exercises.get(position).getGif())
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.gif);
+        holder.addExercise.setOnClickListener(view -> {
+            Context context = view.getContext();
+            Intent intent = new Intent(context, AddExerciseActivity.class);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -51,6 +62,7 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView target, name, equipament;
         ImageView gif;
+        Button addExercise;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +70,13 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
             name = itemView.findViewById(R.id.name);
             equipament = itemView.findViewById(R.id.equipament);
             gif = itemView.findViewById(R.id.gif);
+            addExercise = itemView.findViewById(R.id.addExercise);
+
+//            addExercise.setOnClickListener(view -> {
+//                Context context = view.getContext();
+//                Intent intent = new Intent(context, AddExerciseActivity.class);
+////                intent.putExtra("exercise", exercise.toString());
+//            });
         }
     }
 }

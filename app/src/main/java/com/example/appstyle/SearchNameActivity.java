@@ -1,5 +1,6 @@
 package com.example.appstyle;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ public class SearchNameActivity extends AppCompatActivity {
     private ExerciseApiService exerciseApiService = new ExerciseApiService();
     private List<Exercise> exercises = new ArrayList<>();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,8 @@ public class SearchNameActivity extends AppCompatActivity {
         InicializarCampos();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        props.setText(getIntent().getStringExtra("text"));
+        String propsString = getIntent().getStringExtra("text");
+        props.setText(propsString.substring(0, 1).toUpperCase() + propsString.substring(1));
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override

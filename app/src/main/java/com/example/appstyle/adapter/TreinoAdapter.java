@@ -18,7 +18,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
     private ArrayList<String> treinos = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-
     //Pegar o treino que foi clicado
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
@@ -57,8 +56,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
         void onItemClick(String nomeTreino);
     }
 
-
-
     static class TreinoViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNomeTreino;
         int[] backgroundDrawables = {R.drawable.card_c1, R.drawable.card_c2, R.drawable.card_c3,
@@ -74,7 +71,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
         public void bind(String nomeTreino, int position) {
             textViewNomeTreino.setText(nomeTreino);
             textViewNomeTreino.setBackgroundResource(backgroundDrawables[position % backgroundDrawables.length]);
-
         }
     }
 }

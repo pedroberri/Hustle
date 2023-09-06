@@ -56,6 +56,7 @@
                     android:layout_height="100dp" />
 
             <Button
+                    android:id="@+id/addExercise"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/azul"

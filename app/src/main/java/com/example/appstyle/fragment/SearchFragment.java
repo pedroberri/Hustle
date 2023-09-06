@@ -67,6 +67,7 @@ public class SearchFragment extends Fragment {
                 Log.e("textProps", searchInput.getText().toString());
                 intent.putExtra("text", searchInput.getText().toString());
                 startActivity(intent);
+                searchInput.setText("");
                 return true;
             }
             return false;
