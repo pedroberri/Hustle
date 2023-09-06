@@ -1,8 +1,13 @@
 package com.example.appstyle;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appstyle.adapter.TreinoAdapter;
 import com.example.appstyle.decorator.SpaceItemDecoration;
 import com.example.appstyle.fragment.model.TreinoViewModel;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -25,6 +32,8 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     private RecyclerView recyclerWorkouts;
     private TreinoViewModel treinoViewModel;
+
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +48,49 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         TreinoAdapter adapter = new TreinoAdapter();
         adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onItemClick(String nomeTreino) {
-                Intent intent = new Intent(AddExerciseActivity.this, WorkoutActivity.class);
-                intent.putExtra("treino", nomeTreino);
-                startActivity(intent);
+                Log.e("treino", nomeTreino);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                DocumentReference treinoRef = db.collection("usuarios").document(usuarioID)
+                        .collection("treinos").document(nomeTreino);
+
+                treinoRef.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        List<Exercise> listaDeExercicios = (List<Exercise>) documentSnapshot.get("exercicios");
+
+                        // Adicione o novo exercício à lista existente.
+                        listaDeExercicios.add(new Exercise("Teste","Biceps test","Machine learning","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeDU_sh6gAapCWPiis-W5aVnSGONXgTCb77s3-NliIpg&s"));
+
+                        // Atualize o documento do treino com a lista de exercícios atualizada.
+                        treinoRef.update("exercicios", listaDeExercicios)
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("good", "Exercício adicionado com sucesso no Firestore");
+                                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "The exercise was added to your workout", Snackbar.LENGTH_SHORT);
+
+                                    snackbar.getView().setBackgroundColor(getResources().getColor(R.color.green));
+                                    snackbar.setTextColor(Color.WHITE);
+                                    snackbar.show();
+
+                                    // Finaliza a atividade após um breve atraso (tempo suficiente para a Snackbar ser visível)
+                                    new Handler().postDelayed(() -> {
+                                        finish();
+                                    }, 2000);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("bad", "Erro ao adicionar exercício no Firestore", e);
+                                });
+                    } else {
+                        Log.e("dam", "Treino não encontrado no Firestore");
+                    }
+                }).addOnFailureListener(e -> {
+                    // Erro ao acessar o documento do treino
+                });
+
+
             }
         });
 
@@ -55,11 +102,17 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         // Observar os treinos da ViewModel
         treinoViewModel.getTreinos().observe(this, adapter::setTreinos);
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    private void InicializarCampos() {
-        recyclerWorkouts = findViewById(R.id.recyclerViewOpenSearch);
-    }
+
 
     private void  buscarTreinoDoDia() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -85,5 +138,9 @@ public class AddExerciseActivity extends AppCompatActivity {
                         Log.e("Buscar Treinos", "Erro ao buscar treinos", e);
                     });
         }
+    }
+    private void InicializarCampos() {
+        recyclerWorkouts = findViewById(R.id.recyclerViewOpenSearch);
+        imageView = findViewById(R.id.logout);
     }
 }

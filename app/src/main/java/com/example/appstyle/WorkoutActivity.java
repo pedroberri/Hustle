@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,6 +103,11 @@ public class WorkoutActivity extends AppCompatActivity {
                                         treinoRef.update("exercicios", listaDeExercicios)
                                                 .addOnSuccessListener(aVoid -> {
                                                     Log.d("good", "Exercício removido com sucesso no Firestore");
+                                                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "The exercise was removed from your workout", Snackbar.LENGTH_SHORT);
+
+                                                    snackbar.getView().setBackgroundColor(getResources().getColor(R.color.red));
+                                                    snackbar.setTextColor(Color.WHITE);
+                                                    snackbar.show();
                                                 })
                                                 .addOnFailureListener(e -> {
                                                     Log.e("bad", "Erro ao remover exercício no Firestore", e);
