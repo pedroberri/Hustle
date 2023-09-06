@@ -45,7 +45,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         buscarTreinoDoDia();
 
-        Exercise exercise = (Exercise) getIntent().getSerializableExtra("exercise");
+        this.exercise = (Exercise) getIntent().getSerializableExtra("exercise");
 
         recyclerWorkouts.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,7 +68,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                         List<Exercise> listaDeExercicios = (List<Exercise>) documentSnapshot.get("exercicios");
 
                         // Adicione o novo exercício à lista existente.
-                        listaDeExercicios.add(new Exercise("Teste","Biceps test","Machine learning","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeDU_sh6gAapCWPiis-W5aVnSGONXgTCb77s3-NliIpg&s"));
+                        listaDeExercicios.add(exercise);
 
                         // Atualize o documento do treino com a lista de exercícios atualizada.
                         treinoRef.update("exercicios", listaDeExercicios)
