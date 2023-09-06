@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,6 +33,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     private RecyclerView recyclerWorkouts;
     private TreinoViewModel treinoViewModel;
+    private Exercise exercise;
 
     private ImageView imageView;
 
@@ -42,6 +44,9 @@ public class AddExerciseActivity extends AppCompatActivity {
         InicializarCampos();
         Objects.requireNonNull(getSupportActionBar()).hide();
         buscarTreinoDoDia();
+
+        Exercise exercise = (Exercise) getIntent().getSerializableExtra("exercise");
+
         recyclerWorkouts.setLayoutManager(new LinearLayoutManager(this));
 
         treinoViewModel = new ViewModelProvider(this).get(TreinoViewModel.class);
