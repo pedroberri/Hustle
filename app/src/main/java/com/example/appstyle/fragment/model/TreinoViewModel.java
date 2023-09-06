@@ -27,8 +27,6 @@ public class TreinoViewModel extends ViewModel {
         treinos.setValue(treinosArray);
     }
 
-
-
     public LiveData<String> getQuote() {
         return quote;
     }

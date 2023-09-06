@@ -18,9 +18,7 @@ import java.util.List;
 
 public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoViewHolder> {
 
-    private ArrayList<String> treinos = new ArrayList<>(
-            /*Arrays.asList("Treino A", "Treino B", "Treino C",
-            "Treino D", "Treino E", "Treino F", "Treino G")*/);
+    private ArrayList<String> treinos = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
     //Pegar o treino que foi clicado
