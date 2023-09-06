@@ -1,13 +1,13 @@
 package com.example.appstyle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appstyle.adapter.TreinoAdapter;
 import com.example.appstyle.decorator.SpaceItemDecoration;
@@ -26,11 +26,14 @@ public class AddExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_exercise);
         InicializarCampos();
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        recyclerWorkouts.setLayoutManager(new LinearLayoutManager(this));
+
         treinoViewModel = new ViewModelProvider(this).get(TreinoViewModel.class);
 
         TreinoAdapter adapter = new TreinoAdapter();
 
-        adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener()  {
+        adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String nomeTreino) {
                 Intent intent = new Intent(AddExerciseActivity.this, WorkoutActivity.class);
@@ -41,6 +44,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         recyclerWorkouts.setAdapter(adapter);
 
+        // Aplicar o SpaceItemDecoration
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing);
         recyclerWorkouts.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
 

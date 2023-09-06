@@ -13,10 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appstyle.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoViewHolder> {
 
-    private ArrayList<String> treinos = new ArrayList<>();
+    private ArrayList<String> treinos = new ArrayList<>(
+            /*Arrays.asList("Treino A", "Treino B", "Treino C",
+            "Treino D", "Treino E", "Treino F", "Treino G")*/);
     private OnItemClickListener onItemClickListener;
 
     //Pegar o treino que foi clicado
@@ -26,7 +30,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
 
     @SuppressLint("NotifyDataSetChanged")
     public void setTreinos(ArrayList<String> treinos) {
-        Log.e("SetTreino", "setTreinos: " + treinos.toString());
         this.treinos = treinos;
         notifyDataSetChanged();
     }
