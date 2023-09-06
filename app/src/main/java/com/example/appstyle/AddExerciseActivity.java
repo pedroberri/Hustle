@@ -66,7 +66,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                 treinoRef.get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         List<Exercise> listaDeExercicios = (List<Exercise>) documentSnapshot.get("exercicios");
-
+                        if (listaDeExercicios == null) listaDeExercicios = new ArrayList<>();
                         // Adicione o novo exercício à lista existente.
                         listaDeExercicios.add(exercise);
 
