@@ -22,16 +22,17 @@
         android:src="@drawable/arrow_back_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="@+id/header"
-        app:layout_constraintEnd_toStartOf="@+id/props"/>
+        app:layout_constraintEnd_toStartOf="@+id/textProps"/>
 
     <TextView
-        android:id="@+id/props"
+        android:id="@+id/textProps"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:fontFamily="sans-serif-black"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"
+        android:text="Seus treinos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="@+id/header"
         app:layout_constraintBottom_toBottomOf="@+id/header"/>

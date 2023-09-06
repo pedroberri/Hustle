@@ -75,7 +75,6 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
 //            addExercise.setOnClickListener(view -> {
 //                Context context = view.getContext();
 //                Intent intent = new Intent(context, AddExerciseActivity.class);
-////                intent.putExtra("exercise", exercise.toString());
 //            });
         }
     }

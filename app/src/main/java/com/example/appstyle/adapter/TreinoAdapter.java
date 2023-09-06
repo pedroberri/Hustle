@@ -1,6 +1,7 @@
 package com.example.appstyle.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
 
     @SuppressLint("NotifyDataSetChanged")
     public void setTreinos(ArrayList<String> treinos) {
+        Log.e("SetTreino", "setTreinos: " + treinos.toString());
         this.treinos = treinos;
         notifyDataSetChanged();
     }
