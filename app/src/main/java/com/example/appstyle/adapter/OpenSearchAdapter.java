@@ -47,11 +47,14 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
                 .load(exercises.get(position).getGif())
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.gif);
+
         holder.addExercise.setOnClickListener(view -> {
             Context context = view.getContext();
             Intent intent = new Intent(context, AddExerciseActivity.class);
+            intent.putExtra("exercise", exercises.get(position));
             context.startActivity(intent);
         });
+
     }
 
     @Override
@@ -71,11 +74,6 @@ public class OpenSearchAdapter extends RecyclerView.Adapter<OpenSearchAdapter.Vi
             equipament = itemView.findViewById(R.id.equipament);
             gif = itemView.findViewById(R.id.gif);
             addExercise = itemView.findViewById(R.id.addExercise);
-
-//            addExercise.setOnClickListener(view -> {
-//                Context context = view.getContext();
-//                Intent intent = new Intent(context, AddExerciseActivity.class);
-//            });
         }
     }
 }

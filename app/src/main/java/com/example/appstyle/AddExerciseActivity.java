@@ -3,6 +3,7 @@ package com.example.appstyle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,6 +26,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     private RecyclerView recyclerWorkouts;
     private TreinoViewModel treinoViewModel;
+    private Exercise exercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class AddExerciseActivity extends AppCompatActivity {
         InicializarCampos();
         Objects.requireNonNull(getSupportActionBar()).hide();
         buscarTreinoDoDia();
+
+        Exercise exercise = (Exercise) getIntent().getSerializableExtra("exercise");
+
         recyclerWorkouts.setLayoutManager(new LinearLayoutManager(this));
 
         treinoViewModel = new ViewModelProvider(this).get(TreinoViewModel.class);

@@ -1,8 +1,9 @@
 package com.example.appstyle;
 
+
 import java.io.Serializable;
 
-public class Exercise {
+public class Exercise implements Serializable {
 
     private String target;
 
