@@ -3,6 +3,7 @@ package com.example.appstyle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.appstyle.adapter.OpenWorkoutAdapter;
+import com.example.appstyle.fragment.model.TreinoViewModel;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,7 +27,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
     private TextView treinoText;
     private ImageView sair;
-    private List<Exercise> exercises = new ArrayList<>();
+    private List<Exercise> listaDeExercicios = new ArrayList<>();
     private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class WorkoutActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     private void buscarExercicios(String treino) {
@@ -64,37 +69,68 @@ public class WorkoutActivity extends AppCompatActivity {
 
         treinoRef.get()
                 .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        List<Map<String, Object>> exercises = (List<Map<String, Object>>) documentSnapshot.get("exercicios");
-                        ArrayList<Exercise> list = new ArrayList<>();
-                        for (Map<String, Object> exercise: exercises
-                             ) {
-                            String name = "chest";
-                            String target = "pectorals";
-                            String equipament = "band";
-                            String gif = "https://api.exercisedb.io/image/5UAJuWk6buTr5c";
-                            Exercise auxExercise = new Exercise(name, target, equipament, gif);
-                            list.add(auxExercise);
+                    try {
+                        if (documentSnapshot.exists()) {
+                            List<Map<String, Object>> exercises = (List<Map<String, Object>>) documentSnapshot.get("exercicios");
+                            if (exercises != null) {
+                                for (Map<String, Object> exercise : exercises
+                                ) {
+                                    String name = (String) exercise.get("name");
+                                    String target = (String) exercise.get("target");
+                                    String equipament = (String) exercise.get("equipament");
+                                    String gif = (String) exercise.get("gif");
+                                    Exercise auxExercise = new Exercise(name, target, equipament, gif);
+                                    listaDeExercicios.add(auxExercise);
+                                }
+                            } else {
+                                listaDeExercicios.add(semTreinos());
+                            }
+                            OpenWorkoutAdapter openWorkoutAdapter = new OpenWorkoutAdapter(listaDeExercicios);
+                            openWorkoutAdapter.setOnItemClickListener(new OpenWorkoutAdapter.OnItemClickListener() {
+                                @SuppressLint("NotifyDataSetChanged")
+                                @Override
+                                public void onItemClick(Exercise exercise) {
+                                    if (!exercise.getTarget().equals("None")) {
+                                        listaDeExercicios.remove(exercise);
+                                        openWorkoutAdapter.notifyDataSetChanged();
+
+                                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                        String usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        DocumentReference treinoRef = db.collection("usuarios").document(usuarioID)
+                                                .collection("treinos").document(treino);
+
+                                        treinoRef.update("exercicios", listaDeExercicios)
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Log.d("good", "Exercício removido com sucesso no Firestore");
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Log.e("bad", "Erro ao remover exercício no Firestore", e);
+                                                });
+
+                                     } else {
+                                        Log.e("123", "OUT");
+
+                                    }
+                                }
+                            });
+                            recyclerView.setAdapter(openWorkoutAdapter);
+                        } else {
+                            Log.e("dam", "Deu BO");
                         }
-                        if (list.isEmpty()) {
-                            list.add(semTreinos());
-                        }
-                        OpenWorkoutAdapter openWorkoutAdapter = new OpenWorkoutAdapter(list);
-                        recyclerView.setAdapter(openWorkoutAdapter);
-                    } else {
-                        Log.e("dam", "Deu BO");
+                    } catch (Exception a) {
+                        Log.e("bo", Objects.requireNonNull(a.getMessage()));
                     }
                 })
                 .addOnFailureListener(e -> {
-                    // Erro ao obter o documento do treino
+                    Log.e("dam", "Deu BO");
                 });
     }
 
     private Exercise semTreinos() {
-        String name = "";
-        String target = "";
-        String equipament = "";
-        String gif = "";
+        String name = "Add one train";
+        String target = "None";
+        String equipament = "None";
+        String gif = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeDU_sh6gAapCWPiis-W5aVnSGONXgTCb77s3-NliIpg&s";
         return new Exercise(name, target, equipament, gif);
     }
 

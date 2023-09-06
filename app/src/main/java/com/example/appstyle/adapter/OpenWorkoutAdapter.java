@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,13 @@ public class OpenWorkoutAdapter extends RecyclerView.Adapter<OpenWorkoutAdapter.
         this.exercises = exercises;
     }
 
+    private OnItemClickListener onItemClickListener;
+
+
+    //Pegar o treino que foi clicado
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,6 +49,13 @@ public class OpenWorkoutAdapter extends RecyclerView.Adapter<OpenWorkoutAdapter.
                 .load(exercises.get(position).getGif())
                 .transition(DrawableTransitionOptions.withCrossFade()) // Opcional: adicionar efeito de transição
                 .into(holder.gif);
+
+        holder.button.setOnClickListener(view -> {
+            Exercise clickedExercise = exercises.get(position);
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(clickedExercise);
+            }
+        });
     }
 
     @Override
@@ -52,12 +67,19 @@ public class OpenWorkoutAdapter extends RecyclerView.Adapter<OpenWorkoutAdapter.
         TextView target, name, equipament;
         ImageView gif;
 
+        Button button;
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             target = itemView.findViewById(R.id.target);
             name = itemView.findViewById(R.id.name);
             equipament = itemView.findViewById(R.id.equipament);
             gif = itemView.findViewById(R.id.gif);
+            button = itemView.findViewById(R.id.remove);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Exercise exercise);
     }
 }
