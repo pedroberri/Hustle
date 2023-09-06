@@ -42,7 +42,6 @@ public class WorkoutFragment extends Fragment {
         treinoViewModel = new ViewModelProvider(requireActivity()).get(TreinoViewModel.class);
         TreinoAdapter adapter = new TreinoAdapter();
 
-
         adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener()  {
             @Override
             public void onItemClick(String nomeTreino) {

@@ -1,6 +1,7 @@
 package com.example.appstyle.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appstyle.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoViewHolder> {
 
-    private ArrayList<String> treinos = new ArrayList<>();
+    private ArrayList<String> treinos = new ArrayList<>(
+            /*Arrays.asList("Treino A", "Treino B", "Treino C",
+            "Treino D", "Treino E", "Treino F", "Treino G")*/);
     private OnItemClickListener onItemClickListener;
-
 
     //Pegar o treino que foi clicado
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -57,8 +61,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
         void onItemClick(String nomeTreino);
     }
 
-
-
     static class TreinoViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNomeTreino;
         int[] backgroundDrawables = {R.drawable.card_c1, R.drawable.card_c2, R.drawable.card_c3,
@@ -74,7 +76,6 @@ public class TreinoAdapter extends RecyclerView.Adapter<TreinoAdapter.TreinoView
         public void bind(String nomeTreino, int position) {
             textViewNomeTreino.setText(nomeTreino);
             textViewNomeTreino.setBackgroundResource(backgroundDrawables[position % backgroundDrawables.length]);
-
         }
     }
 }

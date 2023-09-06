@@ -1,5 +1,7 @@
 package com.example.appstyle;
 
+import java.io.Serializable;
+
 public class Exercise {
 
     private String target;

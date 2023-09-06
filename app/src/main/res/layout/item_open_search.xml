@@ -23,21 +23,21 @@
                     android:id="@+id/target"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                 android:textColor="@color/black"/>
 
             <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textSize="23sp"
+                    android:layout_height="70dp"
+                    android:textSize="20sp"
                 android:textColor="@color/black"/>
 
             <TextView
                     android:id="@+id/equipament"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_marginTop="20dp"
                 android:textColor="@color/black"/>
 
@@ -56,6 +56,7 @@
                     android:layout_height="100dp" />
 
             <Button
+                    android:id="@+id/addExercise"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/azul"

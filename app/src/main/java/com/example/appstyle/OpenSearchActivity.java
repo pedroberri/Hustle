@@ -29,7 +29,7 @@ import java.util.Objects;
 
 public class OpenSearchActivity extends AppCompatActivity {
 
-    private ImageView logout_button;
+    private ImageView returnButton;
     private TextView props;
     private RecyclerView recyclerViewOpen;
     private ExerciseApiService exerciseApiService = new ExerciseApiService();
@@ -45,7 +45,7 @@ public class OpenSearchActivity extends AppCompatActivity {
 
         props.setText(getIntent().getStringExtra("text"));
 
-        logout_button.setOnClickListener(new View.OnClickListener() {
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
@@ -84,7 +84,7 @@ public class OpenSearchActivity extends AppCompatActivity {
     }
 
     private void InicializarCampos() {
-        logout_button = findViewById(R.id.logout);
+        returnButton = findViewById(R.id.logout);
         recyclerViewOpen = findViewById(R.id.recyclerViewOpenSearch);
         props = findViewById(R.id.props);
     }
