@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_bold"
         android:padding="20dp"
-        android:text="Select the days of the week that you are planning to do this workout"
+        android:text="Select the day of the week that you are planning to do this workout"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20dp"

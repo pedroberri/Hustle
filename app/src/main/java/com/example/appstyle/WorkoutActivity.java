@@ -1,12 +1,15 @@
 package com.example.appstyle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.appstyle.adapter.OpenWorkoutAdapter;
 import com.example.appstyle.fragment.model.TreinoViewModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -27,30 +32,55 @@ import java.util.Objects;
 public class WorkoutActivity extends AppCompatActivity {
 
     private TextView treinoText;
-    private ImageView sair;
+    private ImageView sair, delete;
     private List<Exercise> listaDeExercicios = new ArrayList<>();
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
         Objects.requireNonNull(getSupportActionBar()).hide();
         InicializarCampos();
+
         String treino = getIntent().getStringExtra("treino");
         treinoText.setText(treino);
 
         buscarExercicios(treino);
-//        if (treino.equals("Teste")) {
-//            String name = "chest";
-//            String target = "pectorals";
-//            String equipament = "band";
-//            String gif = "https://api.exercisedb.io/image/5UAJuWk6buTr5c";
-//            Exercise exercise = new Exercise(name, target, equipament, gif);
-//            ArrayList<Exercise> list = new ArrayList<>();
-//            list.add(exercise);
-//            OpenWorkoutAdapter openWorkoutAdapter = new OpenWorkoutAdapter(list);
-//            recyclerView.setAdapter(openWorkoutAdapter);
-//        }
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String usuarioID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                DocumentReference treinoRef = db.collection("usuarios").document(usuarioID)
+                        .collection("treinos").document(treino);
+
+                treinoRef.delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Treino excluído com sucesso
+                                Log.d("excluirTreino", "Treino excluído com sucesso");
+                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Your workout was deleted", Snackbar.LENGTH_SHORT);
+
+                                snackbar.getView().setBackgroundColor(getResources().getColor(R.color.red));
+                                snackbar.setTextColor(Color.WHITE);
+                                snackbar.show();
+
+
+                                new Handler().postDelayed(WorkoutActivity.this::iniciarHome, 2000);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Erro ao excluir o treino
+                                Log.e("excluirTreino", "Erro ao excluir o treino", e);
+                            }
+                        });
+            }
+        });
 
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +113,6 @@ public class WorkoutActivity extends AppCompatActivity {
                                     Exercise auxExercise = new Exercise(name, target, equipament, gif);
                                     listaDeExercicios.add(auxExercise);
                                 }
-                            } else {
-                                listaDeExercicios.add(semTreinos());
                             }
                             OpenWorkoutAdapter openWorkoutAdapter = new OpenWorkoutAdapter(listaDeExercicios);
                             openWorkoutAdapter.setOnItemClickListener(new OpenWorkoutAdapter.OnItemClickListener() {
@@ -132,17 +160,19 @@ public class WorkoutActivity extends AppCompatActivity {
                 });
     }
 
-    private Exercise semTreinos() {
-        String name = "Add one train";
-        String target = "None";
-        String equipament = "None";
-        String gif = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeDU_sh6gAapCWPiis-W5aVnSGONXgTCb77s3-NliIpg&s";
-        return new Exercise(name, target, equipament, gif);
-    }
-
     private void InicializarCampos() {
         treinoText = findViewById(R.id.treino);
         sair = findViewById(R.id.back);
         recyclerView = findViewById(R.id.recyclerViewWorkout);
+        delete = findViewById(R.id.delete);
+    }
+
+    private void iniciarHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+        finish();
     }
 }

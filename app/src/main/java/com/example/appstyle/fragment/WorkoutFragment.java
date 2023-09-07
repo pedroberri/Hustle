@@ -23,6 +23,12 @@ import com.example.appstyle.adapter.TreinoAdapter;
 import com.example.appstyle.decorator.SpaceItemDecoration;
 import com.example.appstyle.fragment.model.TreinoViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class WorkoutFragment extends Fragment {
 
     private ImageView logout_button;
@@ -35,14 +41,14 @@ public class WorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_workout, container, false);
+        buscarTreinoDoDia();
         InicializarCampos(rootView);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         treinoViewModel = new ViewModelProvider(requireActivity()).get(TreinoViewModel.class);
         TreinoAdapter adapter = new TreinoAdapter();
 
-        adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener()  {
+        adapter.setOnItemClickListener(new TreinoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String nomeTreino) {
                 Intent intent = new Intent(requireContext(), WorkoutActivity.class);
@@ -75,6 +81,7 @@ public class WorkoutFragment extends Fragment {
             }
         });
 
+        Log.e("teste", treinoViewModel.getTreinos().getValue().toString());
         return rootView;
     }
 
@@ -90,5 +97,31 @@ public class WorkoutFragment extends Fragment {
         logout_button = rootView.findViewById(R.id.logout);
         workOut_button = rootView.findViewById(R.id.workout);
         recyclerView = rootView.findViewById(R.id.recyclerViewTreinos);
+    }
+
+    private void buscarTreinoDoDia() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            String usuarioID = firebaseAuth.getCurrentUser().getUid();
+
+            db.collection("usuarios").document(usuarioID)
+                    .collection("treinos")
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                        List<DocumentSnapshot> treinos = queryDocumentSnapshots.getDocuments();
+                        ArrayList<String> listaDeTreinos = new ArrayList<>();
+                        for (DocumentSnapshot treinoSnapshot : treinos) {
+                            listaDeTreinos.add(treinoSnapshot.getId());
+                        }
+                        treinoViewModel.setTreinos(listaDeTreinos);
+                    })
+                    .addOnFailureListener(e -> {
+                        // Erro ao buscar os treinos
+                        Log.e("Buscar Treinos", "Erro ao buscar treinos", e);
+                    });
+        }
     }
 }

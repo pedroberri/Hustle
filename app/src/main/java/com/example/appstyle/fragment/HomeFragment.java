@@ -28,7 +28,6 @@ public class HomeFragment extends Fragment {
     private TreinoViewModel treinoViewModel;
     private ImageView logout_button;
     private TextView weekDayTextView, dateTextView, treinoText, quoteText;
-    private ProgressBar progressBar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -54,13 +53,10 @@ public class HomeFragment extends Fragment {
 
         treinoViewModel.getQuote().observe(getViewLifecycleOwner(), quote -> {
             quoteText.setText(quote);
-            quoteText.setVisibility(View.VISIBLE);
         });
 
         treinoViewModel.getTreinoDoDia().observe(getViewLifecycleOwner(), treino -> {
             treinoText.setText(treino);
-            treinoText.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
         });
 
         logout_button.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +83,6 @@ public class HomeFragment extends Fragment {
         dateTextView = rootView.findViewById(R.id.date);
         treinoText = rootView.findViewById(R.id.treinoDoDia);
         quoteText = rootView.findViewById(R.id.frases);
-        progressBar = rootView.findViewById(R.id.progress_bar);
     }
 
     private String getDayWithSuffix(int day) {

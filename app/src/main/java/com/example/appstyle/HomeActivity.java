@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         String content = jsonObject.getString("content");
                         String author = jsonObject.getString("author");
-                        treinoViewModel.setQuote(content + "\n" + author);
+                        treinoViewModel.setQuote(content + "\n- " + author);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
